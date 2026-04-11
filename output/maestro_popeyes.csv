@@ -1,0 +1,38 @@
+marca,item_fuente,item_canonico,sku_master,familia_producto,subfamilia,tamano,unidad_base,categoria_fuente,sku_comparable
+Popeyes,Alitas x4,Alitas,POPEYES_ALITAS,Alitas,,,unidad,"Tenders, Alitas y Nuggets",CMP_ALITAS
+Popeyes,Tenders x3,Tender,POPEYES_TENDER,Tender,,,unidad,"Tenders, Alitas y Nuggets",CMP_TENDER
+Popeyes,Nuggets x4,Nuggets,POPEYES_NUGGETS,Nuggets,,,unidad,"Tenders, Alitas y Nuggets",CMP_NUGGETS
+Popeyes,Personal Chicharron Pop XL Combo,Chicharrón XL,POPEYES_CHICHARRON_XL,Chicharrón,XL,,unidad,"Tenders, Alitas y Nuggets",CMP_CHICHARRON_XL
+Popeyes,Personal 2 Piezas Combo,Personal 2 Piezas Combo,POPEYES_PERSONAL_2_PIEZAS_COMBO,Postre,Pollo Frito,,unidad,Pollo Frito,CMP_PERSONAL_2_PIEZAS_COMBO
+Popeyes,Personal 3 Piezas Combo,Personal 3 Piezas Combo,POPEYES_PERSONAL_3_PIEZAS_COMBO,Postre,Pollo Frito,,unidad,Pollo Frito,CMP_PERSONAL_3_PIEZAS_COMBO
+Popeyes,Pieza de Pollo x2,Pieza de Pollo,POPEYES_PIEZA_POLLO,Pollo,,,unidad,Pollo Frito,CMP_PIEZA_POLLO
+Popeyes,Dúo 4 Piezas Combo,Dúo 4 Piezas Combo,POPEYES_DUO_4_PIEZAS_COMBO,Postre,Pollo Frito,,unidad,Pollo Frito,CMP_DUO_4_PIEZAS_COMBO
+Popeyes,Promo Festi 10 Piezas Salsatón,Promo Festi 10 Piezas Salsatón,POPEYES_PROMO_FESTI_10_PIEZAS_SALSATON,Salsa,Pollo Frito,,porcion,Pollo Frito,CMP_PROMO_FESTI_10_PIEZAS_SALSATON
+Popeyes,Promo Festi 6 Piezas,Promo Festi 6 Piezas,POPEYES_PROMO_FESTI_6_PIEZAS,Postre,Pollo Frito,,unidad,Pollo Frito,CMP_PROMO_FESTI_6_PIEZAS
+Popeyes,Festi 12 Piezas Combo,Festi 12 Piezas Combo,POPEYES_FESTI_12_PIEZAS_COMBO,Postre,Pollo Frito,,unidad,Pollo Frito,CMP_FESTI_12_PIEZAS_COMBO
+Popeyes,Festi 8 Piezas Combo,Festi 8 Piezas Combo,POPEYES_FESTI_8_PIEZAS_COMBO,Postre,Pollo Frito,,unidad,Pollo Frito,CMP_FESTI_8_PIEZAS_COMBO
+Popeyes,Festi 10 Piezas Combo,Festi 10 Piezas Combo,POPEYES_FESTI_10_PIEZAS_COMBO,Postre,Pollo Frito,,unidad,Pollo Frito,CMP_FESTI_10_PIEZAS_COMBO
+Popeyes,Festi 6 Piezas Combo,Festi 6 Piezas Combo,POPEYES_FESTI_6_PIEZAS_COMBO,Postre,Pollo Frito,,unidad,Pollo Frito,CMP_FESTI_6_PIEZAS_COMBO
+Popeyes,Personal Sandwich Salsatón,Personal Sandwich Salsatón,POPEYES_SANDWICH,Sandwich,,,unidad,Tostys y Sandwichs,CMP_SANDWICH
+Popeyes,Personal Tosty Salsatón,Personal Tosty Salsatón,POPEYES_TOSTY,Tosty,,,unidad,Tostys y Sandwichs,CMP_TOSTY
+Popeyes,Dúo Chicken Roll,Dúo Chicken Roll,POPEYES_CHICKEN_ROLL,Chicken Roll,,,unidad,Tostys y Sandwichs,CMP_CHICKEN_ROLL
+Popeyes,Papas Cajún Regulares,Papas Cajún Regular,POPEYES_PAPAS_CAJUN_REGULAR,Papas,Cayún,Regular,porcion,Complementos,CMP_PAPAS_CAJUN_REGULAR
+Popeyes,Papas Cajún Grandes,Papas Cajún Grande,POPEYES_PAPAS_CAJUN_GRANDE,Papas,Cayún,Grande,porcion,Complementos,CMP_PAPAS_CAJUN_GRANDE
+Popeyes,Papas Cajún Familiares,Papas Cajún Familiar,POPEYES_PAPAS_CAJUN_FAMILIAR,Papas,Cayún,Familiar,porcion,Complementos,CMP_PAPAS_CAJUN_FAMILIAR
+Popeyes,Papas Cajún Super Familiares,Papas Cajún Super Familiar,POPEYES_PAPAS_CAJUN_SUPER_FAMILIAR,Papas,Cayún,Super Familiar,porcion,Complementos,CMP_PAPAS_CAJUN_SUPER_FAMILIAR
+Popeyes,Ensalada de Col Regular,Ensalada de Col Regular,POPEYES_ENSALADA_DE_COL_REGULAR,Ensalada,Complementos,,porcion,Complementos,CMP_ENSALADA_DE_COL_REGULAR
+Popeyes,Ensalada de Col Familiar,Ensalada de Col Familiar,POPEYES_ENSALADA_DE_COL_FAMILIAR,Ensalada,Complementos,,porcion,Complementos,CMP_ENSALADA_DE_COL_FAMILIAR
+Popeyes,Vasote Salsatón,Vasote Salsatón,POPEYES_VASOTE_SALSATON,Salsa,Complementos,,porcion,Complementos,CMP_VASOTE_SALSATON
+Popeyes,Salsa 3 oz,Salsa 3 oz,POPEYES_SALSA_3_OZ,Salsa,Complementos,,porcion,Complementos,CMP_SALSA
+Popeyes,Coca Cola 500ml,Coca Cola 500ml,POPEYES_COCA_COLA_500ML,Bebida,Complementos,,botella,Complementos,CMP_COCA_COLA
+Popeyes,Coca Cola S/Azúcar 500ml,Coca Cola S/Azúcar 500ml,POPEYES_COCA_COLA_S_AZUCAR_500ML,Bebida,Complementos,,botella,Complementos,CMP_COCA_COLA
+Popeyes,Inca Kola 500ml,Inca Kola 500ml,POPEYES_INCA_KOLA_500ML,Bebida,Complementos,,botella,Complementos,CMP_INCA_KOLA
+Popeyes,Inca Kola S/Azúcar 500ml,Inca Kola S/Azúcar 500ml,POPEYES_INCA_KOLA_S_AZUCAR_500ML,Bebida,Complementos,,botella,Complementos,CMP_INCA_KOLA
+Popeyes,Coca Cola 1.5L,Coca Cola 1.5L,POPEYES_COCA_COLA_1_5L,Bebida,Complementos,,botella,Complementos,CMP_COCA_COLA_1_5L
+Popeyes,Coca Cola S/Azúcar 1.5L,Coca Cola S/Azúcar 1.5L,POPEYES_COCA_COLA_S_AZUCAR_1_5L,Bebida,Complementos,,botella,Complementos,CMP_COCA_COLA_1_5L
+Popeyes,Inca Kola 1.5L,Inca Kola 1.5L,POPEYES_INCA_KOLA_1_5L,Bebida,Complementos,,botella,Complementos,CMP_INCA_KOLA_1_5L
+Popeyes,San Luis con gas 625ml.,San Luis con gas 625ml.,POPEYES_SAN_LUIS_CON_GAS_625ML,Bebida,Complementos,,botella,Complementos,CMP_SAN_LUIS
+Popeyes,San Luis sin gas 750ml.,San Luis sin gas 750ml.,POPEYES_SAN_LUIS_SIN_GAS_750ML,Bebida,Complementos,,botella,Complementos,CMP_SAN_LUIS
+Popeyes,Pie de Manzana,Pie de Manzana,POPEYES_PIE_DE_MANZANA,Postre,Complementos,,unidad,Complementos,CMP_PIE_DE_MANZANA
+Popeyes,Pie Dúo,Pie Dúo,POPEYES_PIE_DUO,Postre,Complementos,,unidad,Complementos,CMP_PIE_DUO
+Popeyes,Regalo de Cumpleaños,Regalo de Cumpleaños,POPEYES_REGALO_DE_CUMPLEANOS,Complementos,Complementos,,unidad,Complementos,CMP_REGALO_DE_CUMPLEANOS
