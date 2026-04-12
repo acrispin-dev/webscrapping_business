@@ -229,12 +229,15 @@ class PizzaHutScraper(BaseScraper):
 
         sku_item = self._normalize_accents(title)
         sku_item = sku_item.replace("&", "Y")
-        sku_item = re.sub(r"\([^\)]*\)", "", sku_item)
+        sku_item = re.sub(r"\([^\)]*\)", "", sku_item)  # remover ()
         sku_item = sku_item.replace(" ", "_")
         sku_item = re.sub(r"[^A-Z0-9_]+", "", sku_item)
+        # Remover sufijos de cantidad como _4_UN, _6_UN, _8_UN, etc.
+        sku_item = re.sub(r"_\d+_UN$", "", sku_item)
         sku_item = sku_item.strip("_")
 
-        sku_master = self.build_sku(self.marca, sku_item, f"{count}_UN" if count > 1 else None)
+        # SKU_MASTER sin sufijo de cantidad - solo nombre del producto
+        sku_master = self.build_sku(self.marca, sku_item)
 
         return {
             "marca": self.marca,
@@ -294,23 +297,32 @@ class PizzaHutScraper(BaseScraper):
                 browser = playwright.chromium.launch(headless=True, executable_path=chrome_executable)
             else:
                 browser = playwright.chromium.launch(headless=True)
-            page = browser.new_page(viewport={"width": 1440, "height": 1200})
+            
+            context = browser.new_context(
+                viewport={"width": 1440, "height": 1200},
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            )
+            page = context.new_page()
 
             try:
-                pizza_cards = self._fetch_cards(page, self.PIZZAS_URL, "/pizzas/")
+                # Pizzas
+                pizza_cards = self._fetch_products(page, self.PIZZAS_URL, "/pizzas/")
                 self.logger.info(f"✓ Pizzas: {len(pizza_cards)} cards")
                 for card in pizza_cards:
                     rows.extend(self._build_pizza_rows(card))
 
+                # Antojitos
                 antojitos_cards = []
                 for page_number in [1, 2]:
-                    cards = self._fetch_cards(page, self.ANTOJITOS_URL.format(page=page_number), "/antojitos/")
+                    cards = self._fetch_products(page, self.ANTOJITOS_URL.format(page=page_number), "/antojitos/")
                     self.logger.info(f"✓ Antojitos page {page_number}: {len(cards)} cards")
                     antojitos_cards.extend(cards)
+                
                 for card in antojitos_cards:
                     rows.append(self._build_antojito_row(card))
 
-                bebidas_cards = self._fetch_cards(page, self.BEBIDAS_URL, "/bebidas/")
+                # Bebidas
+                bebidas_cards = self._fetch_products(page, self.BEBIDAS_URL, "/bebidas/")
                 self.logger.info(f"✓ Bebidas: {len(bebidas_cards)} cards")
                 for card in bebidas_cards:
                     rows.append(self._build_bebida_row(card))
@@ -322,3 +334,36 @@ class PizzaHutScraper(BaseScraper):
 
         df = pd.DataFrame(rows).drop_duplicates(subset=["sku_master", "precio_regular", "url_fuente"])
         return df.reset_index(drop=True)
+    
+    def _fetch_products(self, page, url: str, category_prefix: str) -> List[Dict]:
+        """Extraer productos del HTML renderizado"""
+        try:
+            page.goto(url, wait_until="networkidle", timeout=30000)
+            page.wait_for_timeout(2000)
+            
+            html_content = page.content()
+            
+            import json
+            import re
+            
+            # El JSON en Next.js está escapado dentro de strings: \"...\"
+            # Buscar el patrón de productos escapados
+            matches = re.findall(
+                r'{\\\"productId\\\":\s*\d+,\\\"name\\\":\\\"([^\\]*(\\.[^\\]*)*?)\\\".*?\\\"slug\\\":\\\"([^\\]*)\\\".*?\\\"price\\\":\s*([0-9.]+)',
+                html_content,
+                re.DOTALL
+            )
+            
+            cards = []
+            if matches:
+                for name_raw, _, slug, price in matches:
+                    card = {
+                        "href": f"{category_prefix}{slug}",
+                        "text": f"{name_raw}\nS/ {price}"
+                    }
+                    cards.append(card)
+            
+            return cards
+        except Exception as e:
+            self.logger.error(f"Error extrayendo productos: {e}")
+            return []

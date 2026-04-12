@@ -124,3 +124,70 @@ Popeyes,San Luis sin gas 750ml.,San Luis sin gas 750ml.,POPEYES_SAN_LUIS_SIN_GAS
 Popeyes,Pie de Manzana,Pie de Manzana,POPEYES_PIE_DE_MANZANA,Postre,Complementos,,unidad,Complementos,CMP_PIE_DE_MANZANA
 Popeyes,Pie Dúo,Pie Dúo,POPEYES_PIE_DUO,Postre,Complementos,,unidad,Complementos,CMP_PIE_DUO
 Popeyes,Regalo de Cumpleaños,Regalo de Cumpleaños,POPEYES_REGALO_DE_CUMPLEANOS,Complementos,Complementos,,unidad,Complementos,CMP_REGALO_DE_CUMPLEANOS
+KFC,Twister XL TradicionalTortilla de maíz + 2 tenders 100% pechuga de Pollo + lechuga + tomate + queso americano + mayonesa,Twister XL Tradicional,KFC_TWISTER_XL_TRADICIONAL,Twister XL,Tradicional,,unidad,Twister XL,CMP_TWISTER_XL_TRADICIONAL
+KFC,Twister XL AmericanoTortilla de maíz + 2 tenders 100% pechuga de Pollo + lechuga + tocino + queso americano + salsa meltz,Twister XL Americano,KFC_TWISTER_XL_AMERICANO,Twister XL,Americano,,unidad,Twister XL,CMP_TWISTER_XL_AMERICANO
+KFC,Twister XL Peruano1 Twister XL Peruano con Ají de la Casa + Crujientes Papitas al hilo,Twister XL Peruano,KFC_TWISTER_XL_PERUANO,Twister XL,Peruano,,unidad,Twister XL,CMP_TWISTER_XL_PERUANO
+KFC,"Aji de la Casa FamiliarSalsa picante hecha con ají amarillo, cebolla y otras especias (99 Gr aprox)",Salsa Aji Casa Familiar,KFC_SALSA_AJI_CASA_FAMILIAR,Salsa,AJI_CASA,Familiar,porcion,Salsas,CMP_SALSA_AJI_CASA_FAMILIAR
+KFC,"Tártara Peruana FamiliarSalsa a base de mayonesa mezclada cebolla china y BBQ, con un toque ahumado y cremoso (99 Gr aprox)",Salsa Tartara Peruana Familiar,KFC_SALSA_TARTARA_PERUANA_FAMILIAR,Salsa,TARTARA_PERUANA,Familiar,porcion,Salsas,CMP_SALSA_TARTARA_PERUANA_FAMILIAR
+KFC,BBQ FamiliarSalsa Barbecue. Dulce con un toque ahumado (99 Gr aprox),Salsa Bbq Familiar,KFC_SALSA_BBQ_FAMILIAR,Salsa,BBQ,Familiar,porcion,Salsas,CMP_SALSA_BBQ_FAMILIAR
+KFC,Salsa Secreta Familiar1 Salsa Familiar de Salsa Secreta,Salsa Salsa Secreta Familiar,KFC_SALSA_SALSA_SECRETA_FAMILIAR,Salsa,SALSA_SECRETA,Familiar,porcion,Salsas,CMP_SALSA_SALSA_SECRETA_FAMILIAR
+KFC,Honey Mustard FamiliarSalsa dulce a base de mostaza y mayonesa (99 Gr aprox),Salsa Honey Mustard Familiar,KFC_SALSA_HONEY_MUSTARD_FAMILIAR,Salsa,HONEY_MUSTARD,Familiar,porcion,Salsas,CMP_SALSA_HONEY_MUSTARD_FAMILIAR
+KFC,"Krunchy AmericanoJugoso filete de pierna con empanizado crispy, acompañado con crujiente tocino + queso americano + lechuga + salsa meltz",Krunchy Americano Solo,KFC_KRUNCHY_AMERICANO_SOLO,Sandwich,Americano_SOLO,,unidad,Sandwiches,CMP_KRUNCHY_AMERICANO_SOLO
+KFC,Combo Krunchy Americano1 Krunchy Americano + 1 Complemento Regular + 1 Bebida Personal-20%,Krunchy Americano Combo,KFC_KRUNCHY_AMERICANO_COMBO,Sandwich,Americano_COMBO,,unidad,Sandwiches,CMP_KRUNCHY_AMERICANO_COMBO
+KFC,Combo Krunchy BBQ1 Krunchy BQQ + 1 Complemento Regular + 1 Bebida Personal,Krunchy BBQ Combo,KFC_KRUNCHY_BBQ_COMBO,Sandwich,BBQ_COMBO,,unidad,Sandwiches,CMP_KRUNCHY_BBQ_COMBO
+KFC,"Krunchy BBQJugoso filete de pierna con empanizado crispy, acompañado con lechuga + salsa BBQ.",Krunchy BBQ Solo,KFC_KRUNCHY_BBQ_SOLO,Sandwich,BBQ_SOLO,,unidad,Sandwiches,CMP_KRUNCHY_BBQ_SOLO
+KFC,Combo Krunchy Meltz1 Krunchy Meltz + 1 Complemento Regular + 1 Bebida Personal,Krunchy Meltz Combo,KFC_KRUNCHY_MELTZ_COMBO,Sandwich,Meltz_COMBO,,unidad,Sandwiches,CMP_KRUNCHY_MELTZ_COMBO
+KFC,"Krunchy MeltzJugoso filete de pierna con empanizado crispy, acompañado con lechuga y salsa agridulce meltz",Krunchy Meltz Solo,KFC_KRUNCHY_MELTZ_SOLO,Sandwich,Meltz_SOLO,,unidad,Sandwiches,CMP_KRUNCHY_MELTZ_SOLO
+KFC,Paquete 6 Nuggets6 Deliciosos Nuggets de Pollo 100% de Pechuga de Pollo empanizados en nuestra Receta Original,Nuggets Unitario,KFC_NUGGETS,Nuggets,Unitario,,unidad,Complementos,CMP_NUGGETS
+KFC,Paquete 6 Hot Wings6 deliciosas alitas de Pollo picante,Hot Wings Unitario,KFC_HOT_WINGS,Hot Wings,Unitario,,unidad,Complementos,CMP_HOT_WINGS
+KFC,Paquete 6 Tenders6 crujientes tenders elaborados con 100% pechuga de Pollo + empanizados en nuestra Receta Crispy,Tenders Unitario,KFC_TENDERS,Tenders,Unitario,,unidad,Complementos,CMP_TENDERS
+KFC,"PopCorn ChickenJugosos y crocantes trozitos de filete de pierna, empanizados en nuestra Receta Crispy",PopCorn Chicken Popcorn,KFC_POPCORN_CHICKEN,PopCorn Chicken,Popcorn,,unidad,Complementos,CMP_POPCORN_CHICKEN
+KFC,Papa Super FamiliarTradicionales papas fritas (450 gr aprox),Papas Cajun Super Familiar,KFC_PAPAS_SUPER_FAMILIAR,Papas,Cajun,Super Familiar,porcion,Complementos,CMP_PAPAS_SUPER_FAMILIAR
+KFC,Papa FamiliarTradicionales papas fritas (240 gr aprox),Papas Cajun Familiar,KFC_PAPAS_FAMILIAR,Papas,Cajun,Familiar,porcion,Complementos,CMP_PAPAS_FAMILIAR
+KFC,Papa PersonalTradicionales papas fritas (116 gr aprox),Papas Cajun Personal,KFC_PAPAS_PERSONAL,Papas,Cajun,Personal,porcion,Complementos,CMP_PAPAS_PERSONAL
+KFC,Ensalada FamiliarNuestra tradicional ensalada de col con zanahoria y aderezo agridulce (16 Oz. aprox),Ensalada Col Familiar,KFC_ENSALADA_FAMILIAR,Ensalada,Col,Familiar,porcion,Complementos,CMP_ENSALADA_FAMILIAR
+KFC,Ensalada RegularNuestra tradicional ensalada de col con zanahoria y aderezo agridulce (4 Oz. aprox.),Ensalada Col Regular,KFC_ENSALADA_REGULAR,Ensalada,Col,Regular,porcion,Complementos,CMP_ENSALADA_REGULAR
+KFC,Piezas de Pollo (2 un)2 Piezas de Pollo en receta Original o Crispy.,Pieza de Pollo Unitaria,KFC_PIEZA_POLLO,Pollo,Pieza Unitaria,,unidad,Complementos,CMP_PIEZA_POLLO
+KFC,Tres Leches de VainillaTres Leches de Vainilla Personal,Tres Leches,KFC_POSTRE_TRES_LECHES,Postre,TRES_LECHES,,unidad,Postres,CMP_POSTRE_TRES_LECHES
+KFC,Torta TrufadaTorta sabor chocolate con crema de avellanas,Torta Trufada,KFC_POSTRE_TORTA_TRUFADA,Postre,TORTA_TRUFADA,,unidad,Postres,CMP_POSTRE_TORTA_TRUFADA
+KFC,Pie de ManzanaDelicioso y crocante pie relleno de trozos de manzana caramelizada,Pie Manzana,KFC_POSTRE_PIE_MANZANA,Postre,PIE_MANZANA,,unidad,Postres,CMP_POSTRE_PIE_MANZANA
+KFC,Galleta de AvenaGalleta de Avena,Galleta Avena,KFC_POSTRE_GALLETA_AVENA,Postre,GALLETA_AVENA,,unidad,Postres,CMP_POSTRE_GALLETA_AVENA
+KFC,Pie de Dulce de LecheDelicioso y crocante pie relleno de Dulce de Leche,Pie Dulce Leche,KFC_POSTRE_PIE_DULCE_LECHE,Postre,PIE_DULCE_LECHE,,unidad,Postres,CMP_POSTRE_PIE_DULCE_LECHE
+KFC,Inca Kola Zero Azúcar 500 mlInca Kola Zero Azúcar Personal,Inca Kola Zero 500ml,KFC_BEBIDA_INCA_KOLA_ZERO,Bebida,INCA_KOLA_ZERO,500ml,botella,Bebidas,CMP_BEBIDA_INCA_KOLA_ZERO
+KFC,Inca Kola Zero Azúcar 1LInca Kola Sin Azúcar 1L,Inca Kola Zero 1L,KFC_BEBIDA_INCA_KOLA_ZERO_1L,Bebida,INCA_KOLA_ZERO,1L,botella,Bebidas,CMP_BEBIDA_INCA_KOLA_ZERO_1L
+KFC,Inca Kola Zero Azúcar 1.5LInca Kola Sin Azúcar 1.5L,Inca Kola Zero 1.5L,KFC_BEBIDA_INCA_KOLA_ZERO_1_5L,Bebida,INCA_KOLA_ZERO,1.5L,botella,Bebidas,CMP_BEBIDA_INCA_KOLA_ZERO_1_5L
+KFC,Coca-Cola Zero Azúcar 500 mlCoca-Cola Zero Azúcar Personal,Coca Cola Zero 500ml,KFC_BEBIDA_COCA_COLA_ZERO,Bebida,COCA_COLA_ZERO,500ml,botella,Bebidas,CMP_BEBIDA_COCA_COLA_ZERO
+KFC,Coca-Cola Zero Azúcar 1LCoca-Cola Zero Azúcar 1L,Coca Cola Zero 1L,KFC_BEBIDA_COCA_COLA_ZERO_1L,Bebida,COCA_COLA_ZERO,1L,botella,Bebidas,CMP_BEBIDA_COCA_COLA_ZERO_1L
+KFC,Coca-Cola Zero Azúcar 1.5LCoca-Cola Zero Azúcar 1.5L,Coca Cola Zero 1.5L,KFC_BEBIDA_COCA_COLA_ZERO_1_5L,Bebida,COCA_COLA_ZERO,1.5L,botella,Bebidas,CMP_BEBIDA_COCA_COLA_ZERO_1_5L
+KFC,Fanta Naranja 500 mlFanta Personal,Fanta 500ml,KFC_BEBIDA_FANTA,Bebida,FANTA,500ml,botella,Bebidas,CMP_BEBIDA_FANTA
+KFC,Fanta 2.25LFanta de 2.25L,Fanta 2.25L,KFC_BEBIDA_FANTA_2_25L,Bebida,FANTA,2.25L,botella,Bebidas,CMP_BEBIDA_FANTA_2_25L
+KFC,Sprite Original 500 mlSprite Personal,Sprite 500ml,KFC_BEBIDA_SPRITE,Bebida,SPRITE,500ml,botella,Bebidas,CMP_BEBIDA_SPRITE
+KFC,Sprite 2.25LSprite 2.25L,Sprite 2.25L,KFC_BEBIDA_SPRITE_2_25L,Bebida,SPRITE,2.25L,botella,Bebidas,CMP_BEBIDA_SPRITE_2_25L
+KFC,Agua Saborizada de ManzanaAgua Saborizada de Manzana,Agua Saborizada Manzana,KFC_BEBIDA_AGUA_SABORIZADA_MANZANA,Bebida,AGUA_SABORIZADA_MANZANA,,unidad,Bebidas,CMP_BEBIDA_AGUA_SABORIZADA_MANZANA
+KFC,Agua San Luis Sin Gas 750 mlAgua San Luis Sin Gas 750 ml,Agua San Luis 750ml,KFC_BEBIDA_AGUA_SAN_LUIS_750ML,Bebida,AGUA_SAN_LUIS,750ml,botella,Bebidas,CMP_BEBIDA_AGUA_SAN_LUIS_750ML
+PizzaHut,Pizza XL Clásica,Pizza XL Clasica,PIZZAHUT_PIZZA_XL_CLASICA,Pizza,Clasica,XL,unidad,Pizzas,CMP_PIZZA_XL_CLASICA
+PizzaHut,Pizza Chicken BBQ,Chicken Bbq Especial Mediana,PIZZAHUT_CHICKEN_BBQ_ESPECIAL_MEDIANA,Pizza,Especial,Mediana,unidad,Pizzas,CMP_CHICKEN_BBQ_ESPECIAL_MEDIANA
+PizzaHut,Pizza Chicken BBQ,Chicken Bbq Especial Grande,PIZZAHUT_CHICKEN_BBQ_ESPECIAL_GRANDE,Pizza,Especial,Grande,unidad,Pizzas,CMP_CHICKEN_BBQ_ESPECIAL_GRANDE
+PizzaHut,Pizza Chicken BBQ,Chicken Bbq Especial Familiar,PIZZAHUT_CHICKEN_BBQ_ESPECIAL_FAMILIAR,Pizza,Especial,Familiar,unidad,Pizzas,CMP_CHICKEN_BBQ_ESPECIAL_FAMILIAR
+PizzaHut,Pizza Continental,Continental Especial Mediana,PIZZAHUT_CONTINENTAL_ESPECIAL_MEDIANA,Pizza,Especial,Mediana,unidad,Pizzas,CMP_CONTINENTAL_ESPECIAL_MEDIANA
+PizzaHut,Pizza Continental,Continental Especial Grande,PIZZAHUT_CONTINENTAL_ESPECIAL_GRANDE,Pizza,Especial,Grande,unidad,Pizzas,CMP_CONTINENTAL_ESPECIAL_GRANDE
+PizzaHut,Pizza Continental,Continental Especial Familiar,PIZZAHUT_CONTINENTAL_ESPECIAL_FAMILIAR,Pizza,Especial,Familiar,unidad,Pizzas,CMP_CONTINENTAL_ESPECIAL_FAMILIAR
+PizzaHut,Pizza Meat Lovers,Meat Lovers Especial Mediana,PIZZAHUT_MEAT_LOVERS_ESPECIAL_MEDIANA,Pizza,Especial,Mediana,unidad,Pizzas,CMP_MEAT_LOVERS_ESPECIAL_MEDIANA
+PizzaHut,Pizza Meat Lovers,Meat Lovers Especial Grande,PIZZAHUT_MEAT_LOVERS_ESPECIAL_GRANDE,Pizza,Especial,Grande,unidad,Pizzas,CMP_MEAT_LOVERS_ESPECIAL_GRANDE
+PizzaHut,Pizza Meat Lovers,Meat Lovers Especial Familiar,PIZZAHUT_MEAT_LOVERS_ESPECIAL_FAMILIAR,Pizza,Especial,Familiar,unidad,Pizzas,CMP_MEAT_LOVERS_ESPECIAL_FAMILIAR
+PizzaHut,Pizza Pepperoni,Pepperoni Clasica Personal,PIZZAHUT_PEPPERONI_CLASICA_PERSONAL,Pizza,Clasica,Personal,unidad,Pizzas,CMP_PEPPERONI_CLASICA_PERSONAL
+PizzaHut,Pizza Pepperoni,Pepperoni Clasica Mediana,PIZZAHUT_PEPPERONI_CLASICA_MEDIANA,Pizza,Clasica,Mediana,unidad,Pizzas,CMP_PEPPERONI_CLASICA_MEDIANA
+PizzaHut,Pizza Pepperoni,Pepperoni Clasica Grande,PIZZAHUT_PEPPERONI_CLASICA_GRANDE,Pizza,Clasica,Grande,unidad,Pizzas,CMP_PEPPERONI_CLASICA_GRANDE
+PizzaHut,Pizza Pepperoni,Pepperoni Clasica Familiar,PIZZAHUT_PEPPERONI_CLASICA_FAMILIAR,Pizza,Clasica,Familiar,unidad,Pizzas,CMP_PEPPERONI_CLASICA_FAMILIAR
+PizzaHut,Pizza Suprema,Suprema Especial Mediana,PIZZAHUT_SUPREMA_ESPECIAL_MEDIANA,Pizza,Especial,Mediana,unidad,Pizzas,CMP_SUPREMA_ESPECIAL_MEDIANA
+PizzaHut,Pizza Suprema,Suprema Especial Grande,PIZZAHUT_SUPREMA_ESPECIAL_GRANDE,Pizza,Especial,Grande,unidad,Pizzas,CMP_SUPREMA_ESPECIAL_GRANDE
+PizzaHut,Pizza Suprema,Suprema Especial Familiar,PIZZAHUT_SUPREMA_ESPECIAL_FAMILIAR,Pizza,Especial,Familiar,unidad,Pizzas,CMP_SUPREMA_ESPECIAL_FAMILIAR
+PizzaHut,Palitos a la Siciliana,PALITOS_A_LA_SICILIANA,PIZZAHUT_PALITOS_A_LA_SICILIANA,Antojito,,6_UN,unidad,Antojitos,CMP_PALITOS_A_LA_SICILIANA
+PizzaHut,Pan al Ajo Especial (4 un),PAN_AL_AJO_ESPECIAL_4_UN,PIZZAHUT_PAN_AL_AJO_ESPECIAL,Antojito,,4_UN,unidad,Antojitos,CMP_PAN_AL_AJO_ESPECIAL
+PizzaHut,Alitas,ALITAS,PIZZAHUT_ALITAS,Antojito,,6_UN,unidad,Antojitos,CMP_ALITAS
+PizzaHut,Rolls de Manjar,ROLLS_DE_MANJAR,PIZZAHUT_ROLLS_DE_MANJAR,Antojito,,6_UN,unidad,Antojitos,CMP_ROLLS_DE_MANJAR
+PizzaHut,Volcán de Limón,VOLCAN_DE_LIMON,PIZZAHUT_VOLCAN_DE_LIMON,Antojito,,,unidad,Antojitos,CMP_VOLCAN_DE_LIMON
+PizzaHut,Salsa Chili Thai,SALSA_CHILI_THAI,PIZZAHUT_SALSA_CHILI_THAI,Antojito,,,unidad,Antojitos,CMP_SALSA_CHILI_THAI
+PizzaHut,Salsa MayoHut,SALSA_MAYOHUT,PIZZAHUT_SALSA_MAYOHUT,Antojito,,,unidad,Antojitos,CMP_SALSA_MAYOHUT
+PizzaHut,Agua San Luis S/Gas Personal,Agua San Luis S/Gas Personal,PIZZAHUT_AGUA_SAN_LUIS_PERSONAL,Bebida,,Personal,botella,Bebidas,CMP_AGUA_SAN_LUIS_PERSONAL
+PizzaHut,Sprite personal,Sprite personal,PIZZAHUT_SPRITE_PERSONAL,Bebida,,Personal,botella,Bebidas,CMP_SPRITE_PERSONAL
