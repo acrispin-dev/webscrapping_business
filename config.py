@@ -26,5 +26,7 @@ ACTIVE_SCRAPERS = [
     'PopeyesScraper',
     'KFCScraper',
     'PizzaHutScraper',
+    'RokysScraper',
+    'ChinawokScraper',
     # 'SubwayScraper',     # Example: uncomment when added
 ]
