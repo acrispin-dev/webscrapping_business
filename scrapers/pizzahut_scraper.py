@@ -142,7 +142,7 @@ class PizzaHutScraper(BaseScraper):
         href = card["href"]
         text = card["text"]
         slug = href.strip("/").split("/")[-1]
-        price = self.parse_price(text)
+        mediana_price = self.parse_price(text)  # Web price is always MEDIANA
         title = text.split("\n")[0].strip()
 
         rows = []
@@ -160,17 +160,28 @@ class PizzaHutScraper(BaseScraper):
                     "subfamilia": "Clasica",
                     "tamano": "XL",
                     "unidad_base": "unidad",
-                    "precio_regular": price,
+                    "precio_regular": mediana_price,
                     "categoria_fuente": "Pizzas",
                     "url_fuente": f"{self.BASE_URL}{href}",
-                    "precio_base_fuente": price,
+                    "precio_base_fuente": mediana_price,
                 }
             )
             return rows
 
         if slug in self.CLASSIC_PIZZAS:
             item_base = self.CLASSIC_PIZZAS[slug]
-            for size in self.PIZZA_SIZE_RULES["classic"]:
+            # Classic pizzas: Personal, Mediana, Grande, Familiar
+            # Mediana = web price
+            # Personal = Mediana - 13
+            # Grande = Mediana + 7
+            # Familiar = Mediana + 10
+            size_prices = {
+                "Personal": mediana_price - 13,
+                "Mediana": mediana_price,
+                "Grande": mediana_price + 7,
+                "Familiar": mediana_price + 10,
+            }
+            for size, size_price in size_prices.items():
                 sku_master = self.build_sku(self.marca, f"{item_base}_CLASICA", size)
                 rows.append(
                     {
@@ -182,17 +193,26 @@ class PizzaHutScraper(BaseScraper):
                         "subfamilia": "Clasica",
                         "tamano": size,
                         "unidad_base": "unidad",
-                        "precio_regular": price,
+                        "precio_regular": round(size_price, 2),
                         "categoria_fuente": "Pizzas",
                         "url_fuente": f"{self.BASE_URL}{href}",
-                        "precio_base_fuente": price,
+                        "precio_base_fuente": mediana_price,
                     }
                 )
             return rows
 
         if slug in self.SPECIAL_PIZZAS:
             item_base = self.SPECIAL_PIZZAS[slug]
-            for size in self.PIZZA_SIZE_RULES["special"]:
+            # Special pizzas: Mediana, Grande, Familiar
+            # Mediana = web price
+            # Grande = Mediana + 9
+            # Familiar = Mediana + 19 (Grande + 10)
+            size_prices = {
+                "Mediana": mediana_price,
+                "Grande": mediana_price + 9,
+                "Familiar": mediana_price + 19,
+            }
+            for size, size_price in size_prices.items():
                 sku_master = self.build_sku(self.marca, f"{item_base}_ESPECIAL", size)
                 rows.append(
                     {
@@ -204,10 +224,10 @@ class PizzaHutScraper(BaseScraper):
                         "subfamilia": "Especial",
                         "tamano": size,
                         "unidad_base": "unidad",
-                        "precio_regular": price,
+                        "precio_regular": round(size_price, 2),
                         "categoria_fuente": "Pizzas",
                         "url_fuente": f"{self.BASE_URL}{href}",
-                        "precio_base_fuente": price,
+                        "precio_base_fuente": mediana_price,
                     }
                 )
             return rows
@@ -306,7 +326,7 @@ class PizzaHutScraper(BaseScraper):
 
             try:
                 # Pizzas
-                pizza_cards = self._fetch_products(page, self.PIZZAS_URL, "/pizzas/")
+                pizza_cards = self._fetch_cards(page, self.PIZZAS_URL, "/pizzas/")
                 self.logger.info(f"✓ Pizzas: {len(pizza_cards)} cards")
                 for card in pizza_cards:
                     rows.extend(self._build_pizza_rows(card))
@@ -314,7 +334,7 @@ class PizzaHutScraper(BaseScraper):
                 # Antojitos
                 antojitos_cards = []
                 for page_number in [1, 2]:
-                    cards = self._fetch_products(page, self.ANTOJITOS_URL.format(page=page_number), "/antojitos/")
+                    cards = self._fetch_cards(page, self.ANTOJITOS_URL.format(page=page_number), "/antojitos/")
                     self.logger.info(f"✓ Antojitos page {page_number}: {len(cards)} cards")
                     antojitos_cards.extend(cards)
                 
@@ -322,7 +342,7 @@ class PizzaHutScraper(BaseScraper):
                     rows.append(self._build_antojito_row(card))
 
                 # Bebidas
-                bebidas_cards = self._fetch_products(page, self.BEBIDAS_URL, "/bebidas/")
+                bebidas_cards = self._fetch_cards(page, self.BEBIDAS_URL, "/bebidas/")
                 self.logger.info(f"✓ Bebidas: {len(bebidas_cards)} cards")
                 for card in bebidas_cards:
                     rows.append(self._build_bebida_row(card))
