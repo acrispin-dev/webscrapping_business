@@ -247,16 +247,11 @@ class PizzaHutScraper(BaseScraper):
         canonical = re.sub(r"\([^\)]*\)", "", canonical)
         canonical = re.sub(r"\s+", " ", canonical).strip()
 
-        sku_item = self._normalize_accents(title)
-        sku_item = sku_item.replace("&", "Y")
-        sku_item = re.sub(r"\([^\)]*\)", "", sku_item)  # remover ()
-        sku_item = sku_item.replace(" ", "_")
-        sku_item = re.sub(r"[^A-Z0-9_]+", "", sku_item)
-        # Remover sufijos de cantidad como _4_UN, _6_UN, _8_UN, etc.
-        sku_item = re.sub(r"_\d+_UN$", "", sku_item)
-        sku_item = sku_item.strip("_")
+        # Use slug for SKU_MASTER - simpler and cleaner (e.g., palitos-a-la-siciliana)
+        # Convert slug by replacing hyphens with underscores and normalizing
+        sku_item = slug.upper().replace("-", "_")
 
-        # SKU_MASTER sin sufijo de cantidad - solo nombre del producto
+        # SKU_MASTER - simple product name without quantities or prices
         sku_master = self.build_sku(self.marca, sku_item)
 
         return {
@@ -286,9 +281,8 @@ class PizzaHutScraper(BaseScraper):
             item = rule["item"]
             size = rule["size"]
         else:
-            item = self._normalize_accents(title)
-            item = item.replace(" ", "_")
-            item = re.sub(r"[^A-Z0-9_]+", "", item)
+            # Use slug for simpler SKU_MASTER (e.g., coca-cola-sin-azucar → COCA_COLA_SIN_AZUCAR)
+            item = slug.upper().replace("-", "_")
             size = None
 
         sku_master = self.build_sku(self.marca, item, size)
