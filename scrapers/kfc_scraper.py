@@ -53,6 +53,10 @@ class KFCScraper(BaseScraper):
     def extract_unitario_price(self, nombre: str, precio_total: float) -> tuple:
         """Extract unitario price from bulk price"""
         n = nombre.lower()
+
+        # Pieza de pollo is sold as a 2-unit portion in the source menu.
+        if "pieza" in n and "pollo" in n:
+            return (round(precio_total / 2, 2), 2)
         
         # Nuggets
         if "nuggets" in n:
