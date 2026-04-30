@@ -20,6 +20,7 @@ class KFCScraper(BaseScraper):
     
     BASE_URL = "https://www.kfc.com.pe"
     CATEGORIES = {
+        "Pollo": f"{BASE_URL}/carta/pollo",
         "Twister XL": f"{BASE_URL}/carta/twister-xl",
         "Salsas": f"{BASE_URL}/carta/salsas",
         "Sandwiches": f"{BASE_URL}/carta/sandwiches",
@@ -143,7 +144,9 @@ class KFCScraper(BaseScraper):
                         n_lower = nombre.lower()
                         
                         # Process by category
-                        if categoria_fuente == "Twister XL":
+                        if categoria_fuente == "Pollo":
+                            self._process_pollo_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                        elif categoria_fuente == "Twister XL":
                             self._process_twister_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
                         elif categoria_fuente == "Salsas":
                             self._process_salsas_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
@@ -166,6 +169,71 @@ class KFCScraper(BaseScraper):
         
         return products_data
     
+    def _process_pollo_category(self, nombre, n_lower, precio, url, categoria, results):
+        """Process Pollo category - chicken pieces, buckets and other chicken products"""
+        existing_skus = {row.get("sku_master") for row in results}
+
+        if "balde" in n_lower or "bucket" in n_lower:
+            # Bucket products (e.g., "Balde Familiar", "Balde Personal")
+            tamano = self._detect_size(n_lower) or "Regular"
+            size_tag = tamano.upper().replace(" ", "_")
+            sku = self.build_sku(self.marca, f"BALDE_POLLO_{size_tag}")
+            results.append({
+                "marca": self.marca,
+                "item_fuente": nombre,
+                "item_canonico": f"Balde de Pollo {tamano}".strip(),
+                "sku_master": sku,
+                "familia_producto": "Pollo",
+                "subfamilia": "Balde",
+                "tamano": tamano,
+                "unidad_base": "unidad",
+                "precio_regular": precio,
+                "categoria_fuente": categoria,
+                "url_fuente": url,
+                "precio_base_fuente": precio,
+            })
+        elif ("pieza" in n_lower or "piezas" in n_lower) and "pollo" in n_lower:
+            # Chicken pieces - calculate unit price (sold in 2-piece portions)
+            precio_unit, _ = self.extract_unitario_price(nombre, precio)
+            sku = self.build_sku(self.marca, "PIEZA_POLLO")
+            if sku not in existing_skus:
+                results.append({
+                    "marca": self.marca,
+                    "item_fuente": nombre,
+                    "item_canonico": "Pieza de Pollo Unitaria",
+                    "sku_master": sku,
+                    "familia_producto": "Pollo",
+                    "subfamilia": "Pieza Unitaria",
+                    "tamano": None,
+                    "unidad_base": "unidad",
+                    "precio_regular": precio_unit,
+                    "categoria_fuente": categoria,
+                    "url_fuente": url,
+                    "precio_base_fuente": precio,
+                })
+        elif "combo" not in n_lower:
+            # Other individual pollo products (exclude combos)
+            tamano = self._detect_size(n_lower)
+            if tamano:
+                size_tag = tamano.upper().replace(" ", "_")
+                sku = self.build_sku(self.marca, f"POLLO_{size_tag}")
+            else:
+                sku = self.build_sku(self.marca, "POLLO")
+            results.append({
+                "marca": self.marca,
+                "item_fuente": nombre,
+                "item_canonico": f"Pollo {tamano or ''}".strip(),
+                "sku_master": sku,
+                "familia_producto": "Pollo",
+                "subfamilia": "Otro",
+                "tamano": tamano,
+                "unidad_base": "unidad",
+                "precio_regular": precio,
+                "categoria_fuente": categoria,
+                "url_fuente": url,
+                "precio_base_fuente": precio,
+            })
+
     def _process_twister_category(self, nombre, n_lower, precio, url, categoria, results):
         """Process Twister XL - only base products (not combos)"""
         if "combo" in n_lower:
