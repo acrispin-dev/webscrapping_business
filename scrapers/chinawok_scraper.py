@@ -38,8 +38,19 @@ class ChinawokScraper(BaseScraper):
         """
         self.logger.info("Starting Chinawok scraping...")
         
-        # Run async scraping
-        raw_data = asyncio.run(self._scrape_all_categories())
+        # Run async scraping, handling cases where an event loop may already be running
+        try:
+            raw_data = asyncio.run(self._scrape_all_categories())
+        except RuntimeError as e:
+            # Fallback for environments where an event loop is already running
+            if "cannot be called" not in str(e) and "already running" not in str(e):
+                raise
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            try:
+                raw_data = loop.run_until_complete(self._scrape_all_categories())
+            finally:
+                loop.close()
         
         # Convert to DataFrame
         df = pd.DataFrame(raw_data)
@@ -181,7 +192,7 @@ class ChinawokScraper(BaseScraper):
             # Launch browser
             browser = await p.chromium.launch(headless=True)
             context = await browser.new_context(
-                user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
             )
             page = await context.new_page()
             
@@ -201,19 +212,42 @@ class ChinawokScraper(BaseScraper):
         
         return all_products
     
+    # CSS selectors to try for product containers, in order of preference
+    PRODUCT_SELECTORS = [
+        "li.item.product.product-item",
+        ".product-item",
+        "li.product-item",
+        ".product-card",
+        "[data-product-id]",
+    ]
+
     async def _scrape_category(self, page, url: str, category_name: str) -> List[Dict]:
         """Scrape a single category page"""
         products = []
         
         try:
-            # Navigate to page
-            await page.goto(url, wait_until="networkidle", timeout=60000)
+            # Navigate to page - use domcontentloaded which is more reliable than networkidle
+            await page.goto(url, wait_until="domcontentloaded", timeout=60000)
             
-            # Wait for products to load
-            await page.wait_for_selector("li.item.product.product-item", timeout=10000)
+            # Try each selector in order until one matches
+            product_selector = None
+            for selector in self.PRODUCT_SELECTORS:
+                try:
+                    await page.wait_for_selector(selector, timeout=15000)
+                    count = await page.locator(selector).count()
+                    if count > 0:
+                        product_selector = selector
+                        self.logger.debug(f"  Using selector '{selector}' ({count} elements)")
+                        break
+                except Exception:
+                    continue
+            
+            if not product_selector:
+                self.logger.warning(f"  No product elements found on {url}")
+                return products
             
             # Get all product containers
-            product_elements = await page.locator("li.item.product.product-item").all()
+            product_elements = await page.locator(product_selector).all()
             
             self.logger.info(f"  Found {len(product_elements)} product containers")
             
@@ -252,7 +286,7 @@ class ChinawokScraper(BaseScraper):
                 
                 product_id_elem = await element.locator("form.tocart-form").first.get_attribute("data-product-id")
                 product_id = product_id_elem if product_id_elem else ""
-            except:
+            except Exception:
                 sku = ""
                 product_id = ""
             
@@ -260,14 +294,14 @@ class ChinawokScraper(BaseScraper):
             try:
                 price_elem = await element.locator("span[data-price-amount]").first.get_attribute("data-price-amount")
                 price = float(price_elem) if price_elem else 0.0
-            except:
+            except Exception:
                 price = 0.0
             
             # Get description if available
             try:
                 desc_elem = await element.locator("div.product-item-description-wrapper p").first.inner_text()
                 description = desc_elem.strip() if desc_elem else product_name
-            except:
+            except Exception:
                 description = product_name
             
             # Generate SKU_Master
