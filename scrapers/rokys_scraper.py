@@ -11,7 +11,11 @@ from typing import Dict, List
 from pathlib import Path
 
 import pandas as pd
-from playwright.sync_api import sync_playwright
+
+try:
+    from playwright.sync_api import sync_playwright
+except ImportError:  # Playwright is only used as a best-effort warm-up.
+    sync_playwright = None
 
 from .base_scraper import BaseScraper
 
@@ -22,6 +26,11 @@ class RokysScraper(BaseScraper):
     BASE_URL = "https://rokys.com"
     API_BASE = "https://admin.rokys.com/api/frontend"
     CLUSTER_ID = 200  # Cluster for Roky's Peru
+    CATEGORY_IDS = {
+        "brasas": "771",
+        "fusion_criolla": "764",
+        "bebidas": "4391",
+    }
 
     # Exact brasas to extract (exact name match required)
     BRASAS_EXACTAS = {
@@ -79,20 +88,21 @@ class RokysScraper(BaseScraper):
         self.logger.info("Starting scrape for Roky's...")
         rows = []
 
-        with sync_playwright() as p:
-            browser = p.chromium.launch()
-            page = browser.new_page()
+        if sync_playwright:
+            try:
+                with sync_playwright() as p:
+                    browser = p.chromium.launch()
+                    page = browser.new_page()
 
-            # Navigate to brasas page to trigger API calls
-            self.logger.info("Loading Roky's menu...")
-            page.goto(f"{self.BASE_URL}/menu?category=brasas", wait_until="networkidle", timeout=30000)
-            page.wait_for_timeout(2000)
+                    # Warm up Roky's frontend; the API is fetched separately below.
+                    self.logger.info("Loading Roky's menu...")
+                    for slug in ("brasas", "fusi%C3%B3n-criolla", "bebidas"):
+                        page.goto(f"{self.BASE_URL}/menu?category={slug}", wait_until="networkidle", timeout=30000)
+                        page.wait_for_timeout(1000)
 
-            # Wait for navigating to bebidas page
-            page.goto(f"{self.BASE_URL}/menu?category=bebidas", wait_until="networkidle", timeout=30000)
-            page.wait_for_timeout(2000)
-
-            browser.close()
+                    browser.close()
+            except Exception as e:
+                self.logger.warning(f"Browser warm-up failed, continuing with API: {e}")
 
         # Make API calls with proper headers from browser session
         try:
@@ -110,6 +120,11 @@ class RokysScraper(BaseScraper):
                 rows.extend(bebidas_rows)
                 self.logger.info(f"Bebidas: {len(bebidas_rows)} rows")
 
+                # Extract fusion criolla
+                fusion_rows = self._extract_fusion_criolla(products_data)
+                rows.extend(fusion_rows)
+                self.logger.info(f"Fusión Criolla: {len(fusion_rows)} rows")
+
         except Exception as e:
             self.logger.error(f"Error durante scraping: {e}")
 
@@ -120,15 +135,37 @@ class RokysScraper(BaseScraper):
         df = pd.DataFrame(rows)
         return df
 
-    def _fetch_all_products(self) -> dict:
-        """Fetch products using requests (API doesn't require auth for GET)"""
+    def _fetch_access_token(self) -> str | None:
+        """Read Roky's public API token embedded in the menu HTML."""
         try:
-            # Using session fixture from previous page load
-            url = f"{self.API_BASE}/product/mapped/?cluster={self.CLUSTER_ID}&categories=771,4391&limit=1000&type=catalog&order=desc&sort=name"
+            response = requests.get(
+                f"{self.BASE_URL}/menu?category=fusi%C3%B3n-criolla",
+                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"},
+                timeout=15,
+            )
+            response.raise_for_status()
+            match = re.search(r"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+", response.text)
+            if match:
+                return match.group(0)
+        except Exception as e:
+            self.logger.warning(f"Could not fetch Roky's API token: {e}")
+        return None
+
+    def _fetch_all_products(self) -> dict:
+        """Fetch products from Roky's API using the public API-Access token."""
+        try:
+            categories = ",".join(self.CATEGORY_IDS.values())
+            url = (
+                f"{self.API_BASE}/product/mapped/?cluster={self.CLUSTER_ID}"
+                f"&categories={categories}&limit=1000&type=catalog&order=desc&sort=name"
+            )
             
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
             }
+            token = self._fetch_access_token()
+            if token:
+                headers["API-Access"] = f"Bearer {token}"
             
             response = requests.get(url, headers=headers, timeout=15)
             response.raise_for_status()
@@ -215,15 +252,83 @@ class RokysScraper(BaseScraper):
                     "price": 13.9,
                     "description": "NARANJA 1 LITRO"
                 },
-            ]
+            ],
+            "764": [  # FUSION CRIOLLA category
+                {
+                    "id": 31,
+                    "name": "TALLARIN A LA HUANCAINA CON LOMO SALTADO",
+                    "price": 30.9,
+                    "description": "01 TALLARIN A LA HUANCAINA CON LOMO SALTADO",
+                },
+                {
+                    "id": 32,
+                    "name": "CROCANTE MIXTO DOBLE",
+                    "price": 23.9,
+                    "description": "2 PIEZAS BROASTER + ARROZ ORIENTAL PERSONAL + PORCION DE PAPAS 120 GR + SALSAS",
+                },
+                {
+                    "id": 33,
+                    "name": "CHAUFA CON CHANCHO Y FRANKFURTER",
+                    "price": 30.9,
+                    "description": "01 CHAUFA CON CHANCHO Y FRANKFURTER",
+                },
+                {
+                    "id": 34,
+                    "name": "LOMO SALTADO",
+                    "price": 34.9,
+                    "description": "LOMO SALTADO",
+                },
+                {
+                    "id": 35,
+                    "name": "POLLO SALTADO",
+                    "price": 31.9,
+                    "description": "POLLO SALTADO - PAPA AMARILLA",
+                },
+                {
+                    "id": 36,
+                    "name": "TALLARIN DE CARNE",
+                    "price": 34.9,
+                    "description": "TALLARIN DE CARNE",
+                },
+                {
+                    "id": 37,
+                    "name": "TALLARIN SALTADO DE POLLO",
+                    "price": 31.9,
+                    "description": "01 TALLARIN SALTADO DE POLLO",
+                },
+                {
+                    "id": 38,
+                    "name": "CHAUFA DE POLLO",
+                    "price": 31.9,
+                    "description": "CHAUFA DE POLLO",
+                },
+                {
+                    "id": 39,
+                    "name": "CALDO DE GALLINA SIN PRESA",
+                    "price": 12.9,
+                    "description": "CALDO DE GALLINA SIN PRESA",
+                },
+                {
+                    "id": 40,
+                    "name": "CALDO DE GALLINA CON PRESA",
+                    "price": 17.9,
+                    "description": "CALDO DE GALLINA CON PRESA",
+                },
+            ],
         }
+
+    @staticmethod
+    def _as_product_list(products) -> List[Dict]:
+        if isinstance(products, dict):
+            return list(products.values())
+        if isinstance(products, list):
+            return products
+        return []
 
     def _extract_brasas(self, all_products: dict) -> List[Dict]:
         """Extract brasas matching exact names"""
         rows = []
-        brasas_products = all_products.get("771", [])
-        if isinstance(brasas_products, dict):
-            brasas_products = list(brasas_products.values())
+        brasas_products = self._as_product_list(all_products.get(self.CATEGORY_IDS["brasas"], []))
 
         for product in brasas_products:
             if not isinstance(product, dict):
@@ -257,9 +362,7 @@ class RokysScraper(BaseScraper):
     def _extract_bebidas(self, all_products: dict) -> List[Dict]:
         """Extract exactly the 8 specified beverages"""
         rows = []
-        bebidas_products = all_products.get("4391", [])
-        if isinstance(bebidas_products, dict):
-            bebidas_products = list(bebidas_products.values())
+        bebidas_products = self._as_product_list(all_products.get(self.CATEGORY_IDS["bebidas"], []))
 
         for product in bebidas_products:
             if not isinstance(product, dict):
@@ -294,6 +397,54 @@ class RokysScraper(BaseScraper):
                     break  # Stop checking once we find a match
 
         return rows
+
+    def _extract_fusion_criolla(self, all_products: dict) -> List[Dict]:
+        """Extract all products in Fusion Criolla, preserving SKU_MASTER rules."""
+        rows = []
+        fusion_products = self._as_product_list(all_products.get(self.CATEGORY_IDS["fusion_criolla"], []))
+
+        for product in fusion_products:
+            if not isinstance(product, dict):
+                continue
+
+            name = self.clean_text(product.get("name"))
+            if not name:
+                continue
+
+            price = product.get("price")
+            sku_master = self.build_sku(self.marca, name)
+
+            rows.append({
+                "marca": self.marca,
+                "item_fuente": product.get("name"),
+                "item_canonico": name,
+                "sku_master": sku_master,
+                "familia_producto": "Plato Criollo",
+                "subfamilia": self._infer_fusion_subfamily(name),
+                "tamano": None,
+                "unidad_base": "plato",
+                "precio_regular": price,
+                "categoria_fuente": "Fusión Criolla",
+                "url_fuente": f"{self.BASE_URL}/menu?category=fusi%C3%B3n-criolla",
+                "precio_base_fuente": price,
+            })
+
+        return rows
+
+    @staticmethod
+    def _infer_fusion_subfamily(name: str) -> str | None:
+        normalized = RokysScraper._normalize_accents(name)
+        if "CHAUFA" in normalized:
+            return "Chaufa"
+        if "TALLARIN" in normalized:
+            return "Tallarin"
+        if "SALTADO" in normalized:
+            return "Saltado"
+        if "CALDO" in normalized:
+            return "Caldo"
+        if "CROCANTE" in normalized or "BROASTER" in normalized:
+            return "Broaster"
+        return None
 
 
 def extract_tamaño_brasa(nombre: str) -> str:
