@@ -49,6 +49,7 @@ Bembos,Nuggets,Nuggets Grande,BEMBOS_NUGGETS_GRANDE,Pollo,Nuggets,Grande,unidad,
 Bembos,Nuggetspapa,Nuggetspapa Regular,BEMBOS_NUGGETSPAPA_REGULAR,Pollo,Nuggets,Regular,unidad,Complementos,CMP_NUGGETSPAPA_REGULAR
 Bembos,Nuggetspapa,Nuggetspapa Mediana,BEMBOS_NUGGETSPAPA_MEDIANA,Pollo,Nuggets,Mediana,unidad,Complementos,CMP_NUGGETSPAPA_MEDIANA
 Bembos,Nuggetspapa,Nuggetspapa Grande,BEMBOS_NUGGETSPAPA_GRANDE,Pollo,Nuggets,Grande,unidad,Complementos,CMP_NUGGETSPAPA_GRANDE
+Bembos,Sundae Suspiro,Sundae Suspiro,BEMBOS_SUNDAE_SUSPIRO,Postre,Complementos,,unidad,Complementos,CMP_SUNDAE_SUSPIRO
 Bembos,Sundae Chocoteja,Sundae Chocoteja,BEMBOS_SUNDAE_CHOCOTEJA,Postre,Complementos,,unidad,Complementos,CMP_SUNDAE_CHOCOTEJA
 Bembos,Sundae Chocolúcuma,Sundae Chocolúcuma,BEMBOS_SUNDAE_CHOCOLUCUMA,Postre,Complementos,,unidad,Complementos,CMP_SUNDAE_CHOCOLUCUMA
 Bembos,Sundae Chocomaracuyá,Sundae Chocomaracuyá,BEMBOS_SUNDAE_CHOCOMARACUYA,Postre,Complementos,,unidad,Complementos,CMP_SUNDAE_CHOCOMARACUYA
@@ -66,12 +67,6 @@ Bembos,Chicken Grill,Chicken Grill Grande,BEMBOS_CHICKEN_GRILL_GRANDE,Pollo,Poll
 Bembos,Bembroster Clásica,Bembroster Clásica Regular,BEMBOS_BEMBROSTER_CLASICA_REGULAR,Pollo,Pollo,Regular,unidad,Pollo,CMP_BEMBROSTER_CLASICA_REGULAR
 Bembos,Bembroster Clásica,Bembroster Clásica Mediana,BEMBOS_BEMBROSTER_CLASICA_MEDIANA,Pollo,Pollo,Mediana,unidad,Pollo,CMP_BEMBROSTER_CLASICA_MEDIANA
 Bembos,Bembroster Clásica,Bembroster Clásica Grande,BEMBOS_BEMBROSTER_CLASICA_GRANDE,Pollo,Pollo,Grande,unidad,Pollo,CMP_BEMBROSTER_CLASICA_GRANDE
-Bembos,Bembroster Tártara,Bembroster Tártara Regular,BEMBOS_BEMBROSTER_TARTARA_REGULAR,Pollo,Pollo,Regular,unidad,Pollo,CMP_BEMBROSTER_TARTARA_REGULAR
-Bembos,Bembroster Tártara,Bembroster Tártara Mediana,BEMBOS_BEMBROSTER_TARTARA_MEDIANA,Pollo,Pollo,Mediana,unidad,Pollo,CMP_BEMBROSTER_TARTARA_MEDIANA
-Bembos,Bembroster Tártara,Bembroster Tártara Grande,BEMBOS_BEMBROSTER_TARTARA_GRANDE,Pollo,Pollo,Grande,unidad,Pollo,CMP_BEMBROSTER_TARTARA_GRANDE
-Bembos,Bembroster Queso Tocino,Bembroster Queso Tocino Regular,BEMBOS_BEMBROSTER_QUESO_TOCINO_REGULAR,Pollo,Queso Tocino,Regular,unidad,Pollo,CMP_BEMBROSTER_QUESO_TOCINO_REGULAR
-Bembos,Bembroster Queso Tocino,Bembroster Queso Tocino Mediana,BEMBOS_BEMBROSTER_QUESO_TOCINO_MEDIANA,Pollo,Queso Tocino,Mediana,unidad,Pollo,CMP_BEMBROSTER_QUESO_TOCINO_MEDIANA
-Bembos,Bembroster Queso Tocino,Bembroster Queso Tocino Grande,BEMBOS_BEMBROSTER_QUESO_TOCINO_GRANDE,Pollo,Queso Tocino,Grande,unidad,Pollo,CMP_BEMBROSTER_QUESO_TOCINO_GRANDE
 Bembos,Menú Taypá,Menú Taypá Regular,BEMBOS_MENU_TAYPA_REGULAR,Menu y Ensaladas,Menu y Ensaladas,Regular,unidad,Menu y Ensaladas,CMP_MENU_TAYPA_REGULAR
 Bembos,Menú Taypá,Menú Taypá Mediana,BEMBOS_MENU_TAYPA_MEDIANA,Menu y Ensaladas,Menu y Ensaladas,Mediana,unidad,Menu y Ensaladas,CMP_MENU_TAYPA_MEDIANA
 Bembos,Menú Taypá,Menú Taypá Grande,BEMBOS_MENU_TAYPA_GRANDE,Menu y Ensaladas,Menu y Ensaladas,Grande,unidad,Menu y Ensaladas,CMP_MENU_TAYPA_GRANDE

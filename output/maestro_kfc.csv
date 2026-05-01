@@ -8,14 +8,14 @@ KFC,BBQ FamiliarSalsa Barbecue. Dulce con un toque ahumado (99 Gr aprox),Salsa B
 KFC,Salsa Secreta Familiar1 Salsa Familiar de Salsa Secreta,Salsa Salsa Secreta Familiar,KFC_SALSA_SALSA_SECRETA_FAMILIAR,Salsa,SALSA_SECRETA,Familiar,porcion,Salsas,CMP_SALSA_SALSA_SECRETA_FAMILIAR
 KFC,Honey Mustard FamiliarSalsa dulce a base de mostaza y mayonesa (99 Gr aprox),Salsa Honey Mustard Familiar,KFC_SALSA_HONEY_MUSTARD_FAMILIAR,Salsa,HONEY_MUSTARD,Familiar,porcion,Salsas,CMP_SALSA_HONEY_MUSTARD_FAMILIAR
 KFC,"Krunchy AmericanoJugoso filete de pierna con empanizado crispy, acompañado con crujiente tocino + queso americano + lechuga + salsa meltz",Krunchy Americano Solo,KFC_KRUNCHY_AMERICANO_SOLO,Sandwich,Americano_SOLO,,unidad,Sandwiches,CMP_KRUNCHY_AMERICANO_SOLO
-KFC,Combo Krunchy Americano1 Krunchy Americano + 1 Complemento Regular + 1 Bebida Personal-20%,Krunchy Americano Combo,KFC_KRUNCHY_AMERICANO_COMBO,Sandwich,Americano_COMBO,,unidad,Sandwiches,CMP_KRUNCHY_AMERICANO_COMBO
-KFC,Combo Krunchy BBQ1 Krunchy BQQ + 1 Complemento Regular + 1 Bebida Personal,Krunchy BBQ Combo,KFC_KRUNCHY_BBQ_COMBO,Sandwich,BBQ_COMBO,,unidad,Sandwiches,CMP_KRUNCHY_BBQ_COMBO
+KFC,Combo Krunchy Americano1 Krunchy Americano + 1 Complemento Regular + 1 Bebida Personal,Krunchy Americano Combo,KFC_KRUNCHY_AMERICANO_COMBO,Sandwich,Americano_COMBO,,unidad,Sandwiches,CMP_KRUNCHY_AMERICANO_COMBO
+KFC,Combo Krunchy BBQ1 Krunchy BQQ + 1 Complemento Regular + 1 Bebida Personal-18%,Krunchy BBQ Combo,KFC_KRUNCHY_BBQ_COMBO,Sandwich,BBQ_COMBO,,unidad,Sandwiches,CMP_KRUNCHY_BBQ_COMBO
 KFC,"Krunchy BBQJugoso filete de pierna con empanizado crispy, acompañado con lechuga + salsa BBQ.",Krunchy BBQ Solo,KFC_KRUNCHY_BBQ_SOLO,Sandwich,BBQ_SOLO,,unidad,Sandwiches,CMP_KRUNCHY_BBQ_SOLO
-KFC,Combo Krunchy Meltz1 Krunchy Meltz + 1 Complemento Regular + 1 Bebida Personal,Krunchy Meltz Combo,KFC_KRUNCHY_MELTZ_COMBO,Sandwich,Meltz_COMBO,,unidad,Sandwiches,CMP_KRUNCHY_MELTZ_COMBO
+KFC,Combo Krunchy Meltz1 Krunchy Meltz + 1 Complemento Regular + 1 Bebida Personal-8%,Krunchy Meltz Combo,KFC_KRUNCHY_MELTZ_COMBO,Sandwich,Meltz_COMBO,,unidad,Sandwiches,CMP_KRUNCHY_MELTZ_COMBO
 KFC,"Krunchy MeltzJugoso filete de pierna con empanizado crispy, acompañado con lechuga y salsa agridulce meltz",Krunchy Meltz Solo,KFC_KRUNCHY_MELTZ_SOLO,Sandwich,Meltz_SOLO,,unidad,Sandwiches,CMP_KRUNCHY_MELTZ_SOLO
 KFC,Paquete 6 Nuggets6 Deliciosos Nuggets de Pollo 100% de Pechuga de Pollo empanizados en nuestra Receta Original,Nuggets Unitario,KFC_NUGGETS,Nuggets,Unitario,,unidad,Complementos,CMP_NUGGETS
 KFC,Paquete 6 Hot Wings6 deliciosas alitas de Pollo picante,Hot Wings Unitario,KFC_HOT_WINGS,Hot Wings,Unitario,,unidad,Complementos,CMP_HOT_WINGS
-KFC,Paquete 6 Tenders6 crujientes tenders elaborados con 100% pechuga de Pollo + empanizados en nuestra Receta Crispy,Tenders Unitario,KFC_TENDERS,Tenders,Unitario,,unidad,Complementos,CMP_TENDERS
+KFC,Paquete 6 Tenders6 crujientes tenders elaborados con 100% pechuga de Pollo + empanizados en nuestra Receta Crispy-31%,Tenders Unitario,KFC_TENDERS,Tenders,Unitario,,unidad,Complementos,CMP_TENDERS
 KFC,"PopCorn ChickenJugosos y crocantes trozitos de filete de pierna, empanizados en nuestra Receta Crispy",PopCorn Chicken Popcorn,KFC_POPCORN_CHICKEN,PopCorn Chicken,Popcorn,,unidad,Complementos,CMP_POPCORN_CHICKEN
 KFC,Papa Super FamiliarTradicionales papas fritas (450 gr aprox),Papas Cajun Super Familiar,KFC_PAPAS_SUPER_FAMILIAR,Papas,Cajun,Super Familiar,porcion,Complementos,CMP_PAPAS_SUPER_FAMILIAR
 KFC,Papa FamiliarTradicionales papas fritas (240 gr aprox),Papas Cajun Familiar,KFC_PAPAS_FAMILIAR,Papas,Cajun,Familiar,porcion,Complementos,CMP_PAPAS_FAMILIAR

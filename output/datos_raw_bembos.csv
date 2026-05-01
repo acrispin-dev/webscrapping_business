@@ -23,9 +23,9 @@ Bembos,Hamburguesa Mexicana,Mexicana Grande,BEMBOS_MEXICANA_GRANDE,Hamburguesa,H
 Bembos,Hamburguesa La Churrita,La Churrita Regular,BEMBOS_LA_CHURRITA_REGULAR,Hamburguesa,Hamburguesas,Regular,unidad,18.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,21.9,CMP_LA_CHURRITA_REGULAR
 Bembos,Hamburguesa La Churrita,La Churrita Mediana,BEMBOS_LA_CHURRITA_MEDIANA,Hamburguesa,Hamburguesas,Mediana,unidad,21.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,21.9,CMP_LA_CHURRITA_MEDIANA
 Bembos,Hamburguesa La Churrita,La Churrita Grande,BEMBOS_LA_CHURRITA_GRANDE,Hamburguesa,Hamburguesas,Grande,unidad,24.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,21.9,CMP_LA_CHURRITA_GRANDE
-Bembos,Hamburguesa Chicharronera,Chicharronera Regular,BEMBOS_CHICHARRONERA_REGULAR,Hamburguesa,Hamburguesas,Regular,unidad,16.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,19.9,CMP_CHICHARRONERA_REGULAR
-Bembos,Hamburguesa Chicharronera,Chicharronera Mediana,BEMBOS_CHICHARRONERA_MEDIANA,Hamburguesa,Hamburguesas,Mediana,unidad,19.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,19.9,CMP_CHICHARRONERA_MEDIANA
-Bembos,Hamburguesa Chicharronera,Chicharronera Grande,BEMBOS_CHICHARRONERA_GRANDE,Hamburguesa,Hamburguesas,Grande,unidad,22.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,19.9,CMP_CHICHARRONERA_GRANDE
+Bembos,Hamburguesa Chicharronera,Chicharronera Regular,BEMBOS_CHICHARRONERA_REGULAR,Hamburguesa,Hamburguesas,Regular,unidad,14.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,17.9,CMP_CHICHARRONERA_REGULAR
+Bembos,Hamburguesa Chicharronera,Chicharronera Mediana,BEMBOS_CHICHARRONERA_MEDIANA,Hamburguesa,Hamburguesas,Mediana,unidad,17.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,17.9,CMP_CHICHARRONERA_MEDIANA
+Bembos,Hamburguesa Chicharronera,Chicharronera Grande,BEMBOS_CHICHARRONERA_GRANDE,Hamburguesa,Hamburguesas,Grande,unidad,20.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,17.9,CMP_CHICHARRONERA_GRANDE
 Bembos,Hamburguesa Cheese,Cheese Regular,BEMBOS_CHEESE_REGULAR,Hamburguesa,Cheese,Regular,unidad,16.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,19.9,CMP_CHEESE_REGULAR
 Bembos,Hamburguesa Cheese,Cheese Mediana,BEMBOS_CHEESE_MEDIANA,Hamburguesa,Cheese,Mediana,unidad,19.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,19.9,CMP_CHEESE_MEDIANA
 Bembos,Hamburguesa Cheese,Cheese Grande,BEMBOS_CHEESE_GRANDE,Hamburguesa,Cheese,Grande,unidad,22.9,Hamburguesas,https://www.bembos.com.pe/menu/hamburguesas,19.9,CMP_CHEESE_GRANDE
@@ -49,6 +49,7 @@ Bembos,Nuggets,Nuggets Grande,BEMBOS_NUGGETS_GRANDE,Pollo,Nuggets,Grande,unidad,
 Bembos,Nuggetspapa,Nuggetspapa Regular,BEMBOS_NUGGETSPAPA_REGULAR,Pollo,Nuggets,Regular,unidad,12.9,Complementos,https://www.bembos.com.pe/menu/complementos,15.9,CMP_NUGGETSPAPA_REGULAR
 Bembos,Nuggetspapa,Nuggetspapa Mediana,BEMBOS_NUGGETSPAPA_MEDIANA,Pollo,Nuggets,Mediana,unidad,15.9,Complementos,https://www.bembos.com.pe/menu/complementos,15.9,CMP_NUGGETSPAPA_MEDIANA
 Bembos,Nuggetspapa,Nuggetspapa Grande,BEMBOS_NUGGETSPAPA_GRANDE,Pollo,Nuggets,Grande,unidad,18.9,Complementos,https://www.bembos.com.pe/menu/complementos,15.9,CMP_NUGGETSPAPA_GRANDE
+Bembos,Sundae Suspiro,Sundae Suspiro,BEMBOS_SUNDAE_SUSPIRO,Postre,Complementos,,unidad,7.9,Complementos,https://www.bembos.com.pe/menu/complementos,7.9,CMP_SUNDAE_SUSPIRO
 Bembos,Sundae Chocoteja,Sundae Chocoteja,BEMBOS_SUNDAE_CHOCOTEJA,Postre,Complementos,,unidad,7.9,Complementos,https://www.bembos.com.pe/menu/complementos,7.9,CMP_SUNDAE_CHOCOTEJA
 Bembos,Sundae Chocolúcuma,Sundae Chocolúcuma,BEMBOS_SUNDAE_CHOCOLUCUMA,Postre,Complementos,,unidad,7.9,Complementos,https://www.bembos.com.pe/menu/complementos,7.9,CMP_SUNDAE_CHOCOLUCUMA
 Bembos,Sundae Chocomaracuyá,Sundae Chocomaracuyá,BEMBOS_SUNDAE_CHOCOMARACUYA,Postre,Complementos,,unidad,7.9,Complementos,https://www.bembos.com.pe/menu/complementos,7.9,CMP_SUNDAE_CHOCOMARACUYA
@@ -66,21 +67,15 @@ Bembos,Chicken Grill,Chicken Grill Grande,BEMBOS_CHICKEN_GRILL_GRANDE,Pollo,Poll
 Bembos,Bembroster Clásica,Bembroster Clásica Regular,BEMBOS_BEMBROSTER_CLASICA_REGULAR,Pollo,Pollo,Regular,unidad,11.9,Pollo,https://www.bembos.com.pe/menu/pollo,14.9,CMP_BEMBROSTER_CLASICA_REGULAR
 Bembos,Bembroster Clásica,Bembroster Clásica Mediana,BEMBOS_BEMBROSTER_CLASICA_MEDIANA,Pollo,Pollo,Mediana,unidad,14.9,Pollo,https://www.bembos.com.pe/menu/pollo,14.9,CMP_BEMBROSTER_CLASICA_MEDIANA
 Bembos,Bembroster Clásica,Bembroster Clásica Grande,BEMBOS_BEMBROSTER_CLASICA_GRANDE,Pollo,Pollo,Grande,unidad,17.9,Pollo,https://www.bembos.com.pe/menu/pollo,14.9,CMP_BEMBROSTER_CLASICA_GRANDE
-Bembos,Bembroster Tártara,Bembroster Tártara Regular,BEMBOS_BEMBROSTER_TARTARA_REGULAR,Pollo,Pollo,Regular,unidad,13.9,Pollo,https://www.bembos.com.pe/menu/pollo,16.9,CMP_BEMBROSTER_TARTARA_REGULAR
-Bembos,Bembroster Tártara,Bembroster Tártara Mediana,BEMBOS_BEMBROSTER_TARTARA_MEDIANA,Pollo,Pollo,Mediana,unidad,16.9,Pollo,https://www.bembos.com.pe/menu/pollo,16.9,CMP_BEMBROSTER_TARTARA_MEDIANA
-Bembos,Bembroster Tártara,Bembroster Tártara Grande,BEMBOS_BEMBROSTER_TARTARA_GRANDE,Pollo,Pollo,Grande,unidad,19.9,Pollo,https://www.bembos.com.pe/menu/pollo,16.9,CMP_BEMBROSTER_TARTARA_GRANDE
-Bembos,Bembroster Queso Tocino,Bembroster Queso Tocino Regular,BEMBOS_BEMBROSTER_QUESO_TOCINO_REGULAR,Pollo,Queso Tocino,Regular,unidad,14.9,Pollo,https://www.bembos.com.pe/menu/pollo,17.9,CMP_BEMBROSTER_QUESO_TOCINO_REGULAR
-Bembos,Bembroster Queso Tocino,Bembroster Queso Tocino Mediana,BEMBOS_BEMBROSTER_QUESO_TOCINO_MEDIANA,Pollo,Queso Tocino,Mediana,unidad,17.9,Pollo,https://www.bembos.com.pe/menu/pollo,17.9,CMP_BEMBROSTER_QUESO_TOCINO_MEDIANA
-Bembos,Bembroster Queso Tocino,Bembroster Queso Tocino Grande,BEMBOS_BEMBROSTER_QUESO_TOCINO_GRANDE,Pollo,Queso Tocino,Grande,unidad,20.9,Pollo,https://www.bembos.com.pe/menu/pollo,17.9,CMP_BEMBROSTER_QUESO_TOCINO_GRANDE
-Bembos,Menú Taypá,Menú Taypá Regular,BEMBOS_MENU_TAYPA_REGULAR,Menu y Ensaladas,Menu y Ensaladas,Regular,unidad,16.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,19.9,CMP_MENU_TAYPA_REGULAR
-Bembos,Menú Taypá,Menú Taypá Mediana,BEMBOS_MENU_TAYPA_MEDIANA,Menu y Ensaladas,Menu y Ensaladas,Mediana,unidad,19.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,19.9,CMP_MENU_TAYPA_MEDIANA
-Bembos,Menú Taypá,Menú Taypá Grande,BEMBOS_MENU_TAYPA_GRANDE,Menu y Ensaladas,Menu y Ensaladas,Grande,unidad,22.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,19.9,CMP_MENU_TAYPA_GRANDE
-Bembos,Menú A Lo Pobre,Menú A Lo Pobre Regular,BEMBOS_MENU_A_LO_POBRE_REGULAR,Menu y Ensaladas,A lo Pobre,Regular,unidad,15.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,18.9,CMP_MENU_A_LO_POBRE_REGULAR
-Bembos,Menú A Lo Pobre,Menú A Lo Pobre Mediana,BEMBOS_MENU_A_LO_POBRE_MEDIANA,Menu y Ensaladas,A lo Pobre,Mediana,unidad,18.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,18.9,CMP_MENU_A_LO_POBRE_MEDIANA
-Bembos,Menú A Lo Pobre,Menú A Lo Pobre Grande,BEMBOS_MENU_A_LO_POBRE_GRANDE,Menu y Ensaladas,A lo Pobre,Grande,unidad,21.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,18.9,CMP_MENU_A_LO_POBRE_GRANDE
-Bembos,Burger Menú,Burger Menú Regular,BEMBOS_BURGER_MENU_REGULAR,Menu y Ensaladas,Menu y Ensaladas,Regular,unidad,13.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,16.9,CMP_BURGER_MENU_REGULAR
-Bembos,Burger Menú,Burger Menú Mediana,BEMBOS_BURGER_MENU_MEDIANA,Menu y Ensaladas,Menu y Ensaladas,Mediana,unidad,16.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,16.9,CMP_BURGER_MENU_MEDIANA
-Bembos,Burger Menú,Burger Menú Grande,BEMBOS_BURGER_MENU_GRANDE,Menu y Ensaladas,Menu y Ensaladas,Grande,unidad,19.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,16.9,CMP_BURGER_MENU_GRANDE
+Bembos,Menú Taypá,Menú Taypá Regular,BEMBOS_MENU_TAYPA_REGULAR,Menu y Ensaladas,Menu y Ensaladas,Regular,unidad,18.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,21.9,CMP_MENU_TAYPA_REGULAR
+Bembos,Menú Taypá,Menú Taypá Mediana,BEMBOS_MENU_TAYPA_MEDIANA,Menu y Ensaladas,Menu y Ensaladas,Mediana,unidad,21.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,21.9,CMP_MENU_TAYPA_MEDIANA
+Bembos,Menú Taypá,Menú Taypá Grande,BEMBOS_MENU_TAYPA_GRANDE,Menu y Ensaladas,Menu y Ensaladas,Grande,unidad,24.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,21.9,CMP_MENU_TAYPA_GRANDE
+Bembos,Menú A Lo Pobre,Menú A Lo Pobre Regular,BEMBOS_MENU_A_LO_POBRE_REGULAR,Menu y Ensaladas,A lo Pobre,Regular,unidad,17.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,20.9,CMP_MENU_A_LO_POBRE_REGULAR
+Bembos,Menú A Lo Pobre,Menú A Lo Pobre Mediana,BEMBOS_MENU_A_LO_POBRE_MEDIANA,Menu y Ensaladas,A lo Pobre,Mediana,unidad,20.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,20.9,CMP_MENU_A_LO_POBRE_MEDIANA
+Bembos,Menú A Lo Pobre,Menú A Lo Pobre Grande,BEMBOS_MENU_A_LO_POBRE_GRANDE,Menu y Ensaladas,A lo Pobre,Grande,unidad,23.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,20.9,CMP_MENU_A_LO_POBRE_GRANDE
+Bembos,Burger Menú,Burger Menú Regular,BEMBOS_BURGER_MENU_REGULAR,Menu y Ensaladas,Menu y Ensaladas,Regular,unidad,12.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,15.9,CMP_BURGER_MENU_REGULAR
+Bembos,Burger Menú,Burger Menú Mediana,BEMBOS_BURGER_MENU_MEDIANA,Menu y Ensaladas,Menu y Ensaladas,Mediana,unidad,15.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,15.9,CMP_BURGER_MENU_MEDIANA
+Bembos,Burger Menú,Burger Menú Grande,BEMBOS_BURGER_MENU_GRANDE,Menu y Ensaladas,Menu y Ensaladas,Grande,unidad,18.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,15.9,CMP_BURGER_MENU_GRANDE
 Bembos,Menú Tumbay,Menú Tumbay Regular,BEMBOS_MENU_TUMBAY_REGULAR,Menu y Ensaladas,Menu y Ensaladas,Regular,unidad,15.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,18.9,CMP_MENU_TUMBAY_REGULAR
 Bembos,Menú Tumbay,Menú Tumbay Mediana,BEMBOS_MENU_TUMBAY_MEDIANA,Menu y Ensaladas,Menu y Ensaladas,Mediana,unidad,18.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,18.9,CMP_MENU_TUMBAY_MEDIANA
 Bembos,Menú Tumbay,Menú Tumbay Grande,BEMBOS_MENU_TUMBAY_GRANDE,Menu y Ensaladas,Menu y Ensaladas,Grande,unidad,21.9,Menu y Ensaladas,https://www.bembos.com.pe/menu/bembos-menus,18.9,CMP_MENU_TUMBAY_GRANDE
