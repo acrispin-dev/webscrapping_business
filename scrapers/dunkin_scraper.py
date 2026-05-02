@@ -109,6 +109,15 @@ class DunkinScraper(BaseScraper):
                 
                 self.logger.debug(f"HTML content length: {len(html_content)} bytes")
                 
+                # Save debug HTML to understand structure
+                debug_file = f"output/debug_dunkin_{categoria_nombre.replace(' ', '_')}.html"
+                try:
+                    with open(debug_file, 'w', encoding='utf-8') as f:
+                        f.write(html_content)
+                    self.logger.debug(f"Debug HTML saved to {debug_file}")
+                except:
+                    pass
+                
                 # Parse HTML with BeautifulSoup
                 soup = BeautifulSoup(html_content, "html.parser")
                 
