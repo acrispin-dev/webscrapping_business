@@ -17,8 +17,7 @@ from config import (
     OUTPUT_DIR, CONSOLIDATED_MAESTRO, CONSOLIDATED_PRECIOS, 
     CONSOLIDATED_RAW, ACTIVE_SCRAPERS, LOG_FORMAT, LOG_LEVEL
 )
-from scrapers import BembosScraper, PopeyesScraper, KFCScraper, PizzaHutScraper, RokysScraper, ChinawokScraper
-
+from scrapers import BembosScraper, PopeyesScraper, KFCScraper, PizzaHutScraper, RokysScraper, ChinawokScraper, DunkinScraper
 
 def setup_logging():
     """Setup logging configuration"""
@@ -46,6 +45,7 @@ def get_scraper_instance(scraper_name):
         'PizzaHutScraper': PizzaHutScraper,
         'RokysScraper': RokysScraper,
         'ChinawokScraper': ChinawokScraper,
+        'DunkinScraper': DunkinScraper
         # Add more scrapers here as you create them
         # 'McdonaldsScraper': McdonaldsScraper,
     }

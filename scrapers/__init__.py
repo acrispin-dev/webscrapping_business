@@ -8,6 +8,7 @@ from .kfc_scraper import KFCScraper
 from .pizzahut_scraper import PizzaHutScraper
 from .rokys_scraper import RokysScraper
 from .chinawok_scraper import ChinawokScraper
+from .dunkin_scraper import DunkinScraper
 
 __all__ = [
     'BembosScraper',
@@ -16,4 +17,5 @@ __all__ = [
     'PizzaHutScraper',
     'RokysScraper',
     'ChinawokScraper',
+    'DunkinScraper',
 ]
