@@ -33,6 +33,8 @@ class KFCScraper(BaseScraper):
         if not HAS_PLAYWRIGHT:
             raise ImportError("Playwright is required for KFCScraper")
         super().__init__(output_dir=output_dir, marca="KFC")
+        self.browser = None
+        self.playwright = None
     
     @staticmethod
     def clean_text(text: str) -> str:
@@ -84,87 +86,225 @@ class KFCScraper(BaseScraper):
         return (precio_total, 1)
     
     def extract_products_from_page(self, page_url: str, categoria_fuente: str) -> list:
-        """Use Playwright to load page and extract products"""
+        """Use Playwright to load page and extract products - reuses browser"""
         products_data = []
         
         try:
-            with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
-                page = browser.new_page()
-                page.set_viewport_size({"width": 1280, "height": 720})
-                
-                # Navigate to page
+            # Initialize browser if not already done
+            if not self.browser:
+                self.playwright = sync_playwright().start()
+                self.browser = self.playwright.chromium.launch(headless=True)
+            
+            page = self.browser.new_page()
+            page.set_viewport_size({"width": 1280, "height": 720})
+            
+            try:
+                # Navigate to page with shorter timeout
                 self.logger.debug(f"Navigating to {page_url}")
-                page.goto(page_url, wait_until="domcontentloaded", timeout=30000)
+                try:
+                    page.goto(page_url, wait_until="networkidle", timeout=25000)
+                except:
+                    # If networkidle fails, use domcontentloaded
+                    page.goto(page_url, wait_until="domcontentloaded", timeout=25000)
                 
-                # Wait for content to load
-                time.sleep(3)
+                # Wait for content to load - reduced wait time
+                self.logger.debug(f"Waiting for {categoria_fuente} content to load...")
+                time.sleep(2)
+                
+                # Try to scroll to load lazy-loaded content
+                page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+                time.sleep(1)
                 
                 # Get rendered HTML
                 html_content = page.content()
-                browser.close()
+                
+                self.logger.debug(f"HTML content length: {len(html_content)} bytes")
                 
                 # Parse HTML with BeautifulSoup
                 soup = BeautifulSoup(html_content, "html.parser")
                 
-                # Find all links
-                all_links = soup.find_all('a')
-                seen_products = set()
+                # Try extraction strategies - stop on first success
+                products_data = self._extract_products_strategy1(soup, categoria_fuente, page_url) or []
+                if not products_data:
+                    products_data = self._extract_products_strategy2(soup, categoria_fuente, page_url) or []
+                if not products_data:
+                    products_data = self._extract_products_strategy3(soup, categoria_fuente, page_url) or []
                 
-                for link in all_links:
-                    try:
-                        link_text = self.clean_text(link.get_text())
-                        href = link.get('href', '')
-                        
-                        # Skip navigation and short links
-                        if not link_text or len(link_text) < 5 or len(link_text) > 250:
-                            continue
-                        
-                        # Skip nav links
-                        if any(skip in href.lower() for skip in ['/login', '/institucional', '/sobre', '/politicas']):
-                            continue
-                        
-                        # Extract price
-                        precio = self.parse_price(link_text)
-                        if not precio or precio == 0:
-                            continue
-                        
-                        # Extract product name
-                        nombre = link_text.split('S/')[0].strip()
-                        if not nombre or len(nombre) < 2:
-                            continue
-                        
-                        # Skip duplicates
-                        key = f"{nombre}|{precio}"
-                        if key in seen_products:
-                            continue
-                        seen_products.add(key)
-                        
-                        n_lower = nombre.lower()
-                        
-                        # Process by category
-                        if categoria_fuente == "Twister XL":
-                            self._process_twister_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
-                        elif categoria_fuente == "Salsas":
-                            self._process_salsas_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
-                        elif categoria_fuente == "Sandwiches":
-                            self._process_sandwiches_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
-                        elif categoria_fuente == "Complementos":
-                            self._process_complementos_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
-                        elif categoria_fuente == "Postres":
-                            self._process_postres_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
-                        elif categoria_fuente == "Bebidas":
-                            self._process_bebidas_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
-                    
-                    except Exception as e:
-                        self.logger.debug(f"Error processing link: {e}")
-                        continue
+                if not products_data:
+                    self.logger.warning(f"No products found for {categoria_fuente}")
+                    products_data = []
+            
+            finally:
+                page.close()
+                # Add delay to avoid saturating server - 1 second between requests
+                time.sleep(1)
         
         except Exception as e:
-            self.logger.error(f"Failed to scrape {categoria_fuente}: {e}")
-            return []
+            self.logger.error(f"Failed to scrape {categoria_fuente}: {e}", exc_info=True)
+            products_data = []
         
         return products_data
+    
+    def _extract_products_strategy1(self, soup, categoria_fuente, page_url):
+        """Strategy 1: Extract from anchor tags with prices"""
+        products_data = []
+        all_links = soup.find_all('a')
+        seen_products = set()
+        
+        self.logger.debug(f"Strategy 1: Found {len(all_links)} links total")
+        
+        for link in all_links:
+            try:
+                link_text = self.clean_text(link.get_text())
+                href = link.get('href', '')
+                
+                # Skip navigation and short links
+                if not link_text or len(link_text) < 5 or len(link_text) > 250:
+                    continue
+                
+                # Skip nav links
+                if any(skip in href.lower() for skip in ['/login', '/institucional', '/sobre', '/politicas']):
+                    continue
+                
+                # Extract price
+                precio = self.parse_price(link_text)
+                if not precio or precio == 0:
+                    continue
+                
+                # Extract product name
+                nombre = link_text.split('S/')[0].strip()
+                if not nombre or len(nombre) < 2:
+                    continue
+                
+                # Skip duplicates
+                key = f"{nombre}|{precio}"
+                if key in seen_products:
+                    continue
+                seen_products.add(key)
+                
+                n_lower = nombre.lower()
+                self.logger.debug(f"Found product: {nombre} - S/ {precio}")
+                
+                # Process by category
+                if categoria_fuente == "Twister XL":
+                    self._process_twister_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Salsas":
+                    self._process_salsas_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Sandwiches":
+                    self._process_sandwiches_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Complementos":
+                    self._process_complementos_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Postres":
+                    self._process_postres_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Bebidas":
+                    self._process_bebidas_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+            
+            except Exception as e:
+                self.logger.debug(f"Error processing link in strategy1: {e}")
+                continue
+        
+        return products_data if products_data else None
+    
+    def _extract_products_strategy2(self, soup, categoria_fuente, page_url):
+        """Strategy 2: Extract from divs/spans containing prices"""
+        products_data = []
+        seen_products = set()
+        
+        # Look for elements containing 'S/' pattern
+        elements = soup.find_all(['div', 'span', 'p'])
+        self.logger.debug(f"Strategy 2: Searching in {len(elements)} divs/spans/p tags")
+        
+        for elem in elements:
+            try:
+                text = self.clean_text(elem.get_text())
+                
+                if 'S/' not in text or len(text) < 5:
+                    continue
+                
+                precio = self.parse_price(text)
+                if not precio or precio == 0:
+                    continue
+                
+                nombre = text.split('S/')[0].strip()
+                if not nombre or len(nombre) < 2 or len(nombre) > 200:
+                    continue
+                
+                key = f"{nombre}|{precio}"
+                if key in seen_products:
+                    continue
+                seen_products.add(key)
+                
+                n_lower = nombre.lower()
+                self.logger.debug(f"Found product (strategy2): {nombre} - S/ {precio}")
+                
+                if categoria_fuente == "Twister XL":
+                    self._process_twister_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Salsas":
+                    self._process_salsas_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Sandwiches":
+                    self._process_sandwiches_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Complementos":
+                    self._process_complementos_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Postres":
+                    self._process_postres_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Bebidas":
+                    self._process_bebidas_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+            
+            except Exception as e:
+                self.logger.debug(f"Error in strategy2: {e}")
+                continue
+        
+        return products_data if products_data else None
+    
+    def _extract_products_strategy3(self, soup, categoria_fuente, page_url):
+        """Strategy 3: Extract from all text nodes containing S/"""
+        products_data = []
+        seen_products = set()
+        
+        # Get all text from the page
+        all_text = soup.get_text()
+        self.logger.debug(f"Strategy 3: Total page text: {len(all_text)} chars")
+        
+        # Look for pattern: "Nombre Producto S/ PRECIO"
+        import re
+        pattern = r'([^\n]{5,150}?)\s+S/\s*(\d+(?:\.\d{2})?)'
+        matches = re.finditer(pattern, all_text)
+        
+        for match in matches:
+            try:
+                nombre = self.clean_text(match.group(1))
+                precio_str = match.group(2)
+                precio = float(precio_str)
+                
+                if precio == 0 or len(nombre) < 2:
+                    continue
+                
+                key = f"{nombre}|{precio}"
+                if key in seen_products:
+                    continue
+                seen_products.add(key)
+                
+                n_lower = nombre.lower()
+                self.logger.debug(f"Found product (strategy3): {nombre} - S/ {precio}")
+                
+                if categoria_fuente == "Twister XL":
+                    self._process_twister_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Salsas":
+                    self._process_salsas_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Sandwiches":
+                    self._process_sandwiches_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Complementos":
+                    self._process_complementos_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Postres":
+                    self._process_postres_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+                elif categoria_fuente == "Bebidas":
+                    self._process_bebidas_category(nombre, n_lower, precio, page_url, categoria_fuente, products_data)
+            
+            except Exception as e:
+                self.logger.debug(f"Error in strategy3: {e}")
+                continue
+        
+        return products_data if products_data else None
     
     def _process_twister_category(self, nombre, n_lower, precio, url, categoria, results):
         """Process Twister XL - only base products (not combos)"""
@@ -526,22 +666,44 @@ class KFCScraper(BaseScraper):
         
         raw_data = []
         
-        for categoria, url in self.CATEGORIES.items():
-            self.logger.debug(f"Processing {categoria}")
-            categoria_data = self.extract_products_from_page(url, categoria)
+        try:
+            for categoria, url in self.CATEGORIES.items():
+                self.logger.debug(f"Processing {categoria}")
+                categoria_data = self.extract_products_from_page(url, categoria)
+                
+                # Ensure categoria_data is always a list
+                if categoria_data is None:
+                    categoria_data = []
+                
+                if categoria_data:
+                    self.logger.info(f"✓ {categoria}: {len(categoria_data)} rows")
+                else:
+                    self.logger.info(f"✓ {categoria}: 0 rows")
+                
+                raw_data.extend(categoria_data)
             
-            if categoria_data:
-                self.logger.info(f"✓ {categoria}: {len(categoria_data)} rows")
-            else:
-                self.logger.info(f"✓ {categoria}: 0 rows")
+            if not raw_data:
+                self.logger.warning(f"No data retrieved for {self.marca}")
+                return pd.DataFrame()
             
-            raw_data.extend(categoria_data)
+            df = pd.DataFrame(raw_data)
+            self.logger.info(f"Raw data: {len(df)} rows")
+            
+            return df
         
-        if not raw_data:
-            self.logger.warning(f"No data retrieved for {self.marca}")
-            return pd.DataFrame()
-        
-        df = pd.DataFrame(raw_data)
-        self.logger.info(f"Raw data: {len(df)} rows")
-        
-        return df
+        finally:
+            # Close browser to avoid saturating resources
+            self._close_browser()
+    
+    def _close_browser(self):
+        """Close the Playwright browser and context"""
+        try:
+            if self.browser:
+                self.browser.close()
+                self.browser = None
+            if self.playwright:
+                self.playwright.stop()
+                self.playwright = None
+            self.logger.debug("Browser closed successfully")
+        except Exception as e:
+            self.logger.debug(f"Error closing browser: {e}")
